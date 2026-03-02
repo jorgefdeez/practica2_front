@@ -6,7 +6,7 @@ const api = axios.create({
   timeout: 10000,
 });
 
-export async function getAllCountries(): Promise<CountryBasic[]> {
+const getAllCountries = async () => {
   const { data } = await api.get<CountryBasic[]>('/all', {
     params: { fields: 'name,flags' },
   });
@@ -16,7 +16,7 @@ export async function getAllCountries(): Promise<CountryBasic[]> {
   );
 }
 
-export async function getCountryByName(name: string): Promise<CountryDetail> {
+const getCountryByName = async (name: string) => {
   const decoded = decodeURIComponent(name).replace(/-/g, ' ');
 
   const { data } = await api.get<CountryDetail[]>(`/name/${encodeURIComponent(decoded)}`, {
@@ -30,3 +30,5 @@ export async function getCountryByName(name: string): Promise<CountryDetail> {
 
   return match;
 }
+
+export { getAllCountries, getCountryByName };

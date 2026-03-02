@@ -5,7 +5,7 @@ import CountryCard from '@/components/CountryCard/CountryCard';
 import { getAllCountries } from '@/lib/api/axios';
 import type { CountryBasic } from '@/types';
 
-export default function Home() {
+const Home = () => {
   const [countries, setCountries] = useState<CountryBasic[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div className="home-page">
       <header className="home-header">
-        <h1 className="home-title">🌍 Explorador de Países</h1>
+        <h1 className="home-title">Explorador de Países</h1>
         <input
           type="text"
           placeholder="Buscar país..."
@@ -65,3 +65,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

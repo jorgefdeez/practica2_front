@@ -13,7 +13,7 @@ type CountryCardProps = {
   };
 }
 
-export default function CountryCard({ country }: CountryCardProps) {
+const CountryCard = ({ country }: CountryCardProps) => {
   const slug = country.name.common.toLowerCase().replace(/\s+/g, '-');
 
   return (
@@ -33,3 +33,5 @@ export default function CountryCard({ country }: CountryCardProps) {
     </Link>
   );
 }
+
+export default CountryCard;

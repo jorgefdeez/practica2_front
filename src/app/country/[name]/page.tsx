@@ -6,7 +6,7 @@ type PageProps = {
   params: Promise<{ name: string }>;
 }
 
-export default async function CountryPage({ params }: PageProps) {
+const CountryPage = async ({ params }: PageProps) => {
   const { name } = await params;
 
   let country;
@@ -82,3 +82,5 @@ export default async function CountryPage({ params }: PageProps) {
     </div>
   );
 }
+
+export default CountryPage;

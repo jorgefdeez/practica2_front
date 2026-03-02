@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
 import { getCountryByName } from '@/lib/api/axios';
-import styles from './page.module.css';
 
-interface PageProps {
+type PageProps = {
   params: Promise<{ name: string }>;
 }
 
@@ -14,12 +12,12 @@ export default async function CountryPage({ params }: PageProps) {
   let country;
   try {
     country = await getCountryByName(name);
-  } catch {
-    notFound();
+  } catch (error) {
+    throw new Error(`Error al obtener el país: ${error}`);
   }
 
   if (!country) {
-    notFound();
+    throw new Error(`No se encontró el país "${name}".`);
   }
 
   const languages = country.languages
@@ -28,54 +26,54 @@ export default async function CountryPage({ params }: PageProps) {
   const capital = country.capital?.join(', ') || 'N/A';
 
   return (
-    <div className={styles.page}>
-      <div className={styles.container}>
-        <Link href="/" className={styles.backButton}>
+    <div className="detail-page">
+      <div className="detail-container">
+        <Link href="/" className="back-button">
           ← Volver al inicio
         </Link>
 
-        <div className={styles.card}>
-          <div className={styles.flagWrapper}>
+        <div className="detail-card">
+          <div className="detail-flag-wrapper">
             <Image
               src={country.flags.svg || country.flags.png}
               alt={country.flags.alt || `Bandera de ${country.name.common}`}
               fill
               sizes="(max-width: 768px) 100vw, 560px"
-              className={styles.flag}
+              className="detail-flag"
               priority
             />
           </div>
 
-          <div className={styles.details}>
-            <h1 className={styles.officialName}>{country.name.official}</h1>
+          <div className="detail-info">
+            <h1 className="detail-official-name">{country.name.official}</h1>
             {country.name.common !== country.name.official && (
-              <p className={styles.commonName}>{country.name.common}</p>
+              <p className="detail-common-name">{country.name.common}</p>
             )}
 
-            <dl className={styles.infoList}>
-              <div className={styles.infoRow}>
-                <dt className={styles.label}>Capital</dt>
-                <dd className={styles.value}>{capital}</dd>
+            <dl className="detail-info-list">
+              <div className="detail-info-row">
+                <dt className="detail-label">Capital</dt>
+                <dd className="detail-value">{capital}</dd>
               </div>
-              <div className={styles.infoRow}>
-                <dt className={styles.label}>Región</dt>
-                <dd className={styles.value}>{country.region}</dd>
+              <div className="detail-info-row">
+                <dt className="detail-label">Región</dt>
+                <dd className="detail-value">{country.region}</dd>
               </div>
               {country.subregion && (
-                <div className={styles.infoRow}>
-                  <dt className={styles.label}>Subregión</dt>
-                  <dd className={styles.value}>{country.subregion}</dd>
+                <div className="detail-info-row">
+                  <dt className="detail-label">Subregión</dt>
+                  <dd className="detail-value">{country.subregion}</dd>
                 </div>
               )}
-              <div className={styles.infoRow}>
-                <dt className={styles.label}>Población</dt>
-                <dd className={styles.value}>
+              <div className="detail-info-row">
+                <dt className="detail-label">Población</dt>
+                <dd className="detail-value">
                   {country.population.toLocaleString('es-ES')}
                 </dd>
               </div>
-              <div className={styles.infoRow}>
-                <dt className={styles.label}>Idiomas</dt>
-                <dd className={styles.value}>{languages}</dd>
+              <div className="detail-info-row">
+                <dt className="detail-label">Idiomas</dt>
+                <dd className="detail-value">{languages}</dd>
               </div>
             </dl>
           </div>

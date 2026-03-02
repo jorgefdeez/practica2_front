@@ -1,75 +1,39 @@
-# 🌍 Explorador de Países
+# Práctica 2 – Explorador de Países
 
-Aplicación web desarrollada con **Next.js** que consume la API pública [REST Countries](https://restcountries.com/) y permite explorar información detallada de todos los países del mundo.
+> **Realizada por:** Jorge Fernández y Hugo Thibault
 
-## Características
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-- Listado de todos los países con bandera y nombre.
-- Búsqueda en tiempo real por nombre.
-- Página de detalle por país con: nombre oficial, capital, región, subregión, población e idiomas.
-- Navegación con rutas dinámicas (`/country/[name]`).
-- Diseño responsive con CSS Modules.
+## Getting Started
 
-## Instrucciones para ejecutar el proyecto
-
-### Prerequisitos
-
-- Node.js 18+ instalado.
-- npm (incluido con Node.js).
-
-### Pasos
+First, run the development server:
 
 ```bash
-# 1. Clona el repositorio
-git clone <URL_DEL_REPOSITORIO>
-cd practica2-front
-
-# 2. Instala las dependencias
-npm install
-
-# 3. Inicia el servidor de desarrollo
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Otros comandos
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-npm run build   # Construye la aplicación para producción
-npm start       # Inicia el servidor en modo producción (tras build)
-```
+## Learn More
 
-## Estructura del proyecto
+To learn more about Next.js, take a look at the following resources:
 
-```
-src/
-├── app/
-│   ├── globals.css              # Estilos globales y variables CSS
-│   ├── layout.tsx               # Layout raíz con metadatos
-│   ├── page.tsx                 # Página principal: listado y búsqueda
-│   ├── page.module.css          # Estilos de la página principal
-│   └── country/
-│       └── [name]/
-│           ├── page.tsx         # Página dinámica de detalle de país
-│           └── page.module.css  # Estilos de la página de detalle
-└── components/
-    └── CountryCard/
-        ├── CountryCard.tsx      # Componente reutilizable de tarjeta de país
-        └── CountryCard.module.css
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## API utilizada
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-[REST Countries v3.1](https://restcountries.com/)
+## Deploy on Vercel
 
-- Listado: `GET https://restcountries.com/v3.1/all?fields=name,flags`
-- Detalle: `GET https://restcountries.com/v3.1/name/{name}?fields=name,flags,capital,region,subregion,population,languages`
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-## Tecnologías
-
-- [Next.js 15](https://nextjs.org/) (App Router)
-- [React 19](https://react.dev/)
-- TypeScript
-- CSS Modules
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
